@@ -40,7 +40,7 @@ watch(list, (newValue, _) => {
   <div class="body">
     <h1>TODO-LIST</h1>
     <div>
-      <input type="text" v-model="info">
+      <input type="text" v-model="info" @keyup.enter="addItem">
       <button @click="addItem">添加</button>
     </div>
     <ul>
