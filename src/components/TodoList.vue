@@ -1,5 +1,6 @@
 <script setup>
 import {ref, watch} from "vue";
+import {ElNotification} from "element-plus";
 
 const localStageName = 'todo-localStage';
 let info = ref('');
@@ -16,6 +17,12 @@ function addItem() {
 
 function deleteItem(item) {
   list.value = list.value.filter((t) => t !== item)
+
+  return ElNotification({
+    title: 'Success',
+    message: 'Delete Success',
+    type: 'success',
+  })
 }
 
 watch(list.value, (newValue, _) => {
@@ -40,7 +47,7 @@ watch(list, (newValue, _) => {
       <li class="item" v-for="item in list">
         <input type="checkbox" v-model="item.checked">
         <span :class="{finish: item.checked}">{{ item.value }}</span>
-        <input type="button" value="X" @click="deleteItem(item)">
+        <el-button plain @click="deleteItem(item)">X</el-button>
       </li>
     </ul>
   </div>
